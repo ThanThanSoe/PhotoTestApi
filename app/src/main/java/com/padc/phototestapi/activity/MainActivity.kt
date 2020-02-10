@@ -43,6 +43,7 @@ class MainActivity :BaseActivity(), PhotoListView {
 
         photoListPresenter = ViewModelProviders.of(this)
             .get(PhotoListPresenter::class.java)
+        photoListPresenter.initPresenter(this)
 
         photoItemAdapter = PhotoItemAdapter(photoListPresenter)
 

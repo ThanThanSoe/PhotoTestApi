@@ -11,6 +11,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.RuntimeException
 import java.util.concurrent.TimeUnit
 
@@ -28,6 +29,7 @@ object RetrofitDataAgent: PhotoDataAgent{
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         photoApi = retrofit.create(PhotoApi::class.java)

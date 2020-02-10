@@ -6,6 +6,7 @@ import androidx.lifecycle.Transformations
 import com.padc.phototestapi.data.vos.PhotoVO
 import com.padc.phototestapi.utils.EM_NULL_RESPONSE
 import io.reactivex.Maybe
+import io.reactivex.MaybeSource
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -26,14 +27,14 @@ object PhotoListModelImpl: PhotoListModel,BaseModel(){
     }
 
     override fun getAllPhotos(onFailure: (String) -> Unit): LiveData<List<PhotoVO>> {
-        val databaseSingle = database.photoDao().getAllPhotosMaybe().subscribeOn(Schedulers.io())
-            .flatMap {
-                if(it.isEmpty()){
-                    Maybe.empty()
-                }else{
-                    Maybe.just(it)
-                }
+        val databaseSingle = database.photoDao().getAllPhotosMaybe().subscribeOn(Schedulers.io()).flatMap {
+            if (it.isEmpty()){
+                Maybe.empty()
+            }else{
+                Maybe.just(it)
             }
+        }
+
         val networkObservable = dataAgent.getPhotosObservable()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

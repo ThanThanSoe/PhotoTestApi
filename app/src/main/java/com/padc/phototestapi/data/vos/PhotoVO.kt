@@ -18,5 +18,5 @@ data class PhotoVO(
     var fileType: String,
 
     @SerializedName("data")
-    var data: String
+    var data: Byte
 )

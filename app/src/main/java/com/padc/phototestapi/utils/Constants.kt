@@ -1,6 +1,6 @@
 package com.padc.phototestapi.utils
 
-const val BASE_URL = "http://172.20.10.14:8080/"
+const val BASE_URL = "http://192.168.1.116:8080/"
 const val GET_PHOTO_LIST = "allFiles"
 const val GET_PHOTO_DETAIL = "allFiles/{id}"
 
